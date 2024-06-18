@@ -1,0 +1,136 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.header .user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.header .user-info span {
+    font-size: 1.1rem;
+}
+
+.header .logout-button {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+}
+
+.header .logout-button:hover {
+    background-color: #c82333;
+}
+
+/* Table styles */
+.table-container {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+table td {
+    color: #666;
+}
+
+table th:first-child, table td:first-child {
+    width: 10%;
+}
+
+table th:nth-child(2), table td:nth-child(2) {
+    width: 15%;
+}
+
+table th:nth-child(3), table td:nth-child(3) {
+    width: 15%;
+}
+
+table th:nth-child(4), table td:nth-child(4) {
+    width: 20%;
+}
+
+table th:nth-child(5), table td:nth-child(5) {
+    width: 25%;
+}
+
+table th:nth-child(6), table td:nth-child(6) {
+    width: 15%;
+}
+
+table th:last-child, table td:last-child {
+    width: 10%;
+    text-align: center;
+}
+
+/* Pagination styles */
+.pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination button {
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+}
+
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+.pagination .disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination .disabled:hover {
+    background-color: #ccc;
+}

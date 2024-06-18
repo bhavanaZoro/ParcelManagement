@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking History</title>
+    <link rel="stylesheet" href="previousBooking.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <span class="logo">Parcel Management</span>
+                <div class="user-info">
+                    <span id="welcomeUser"></span>
+                    <button id="logoutButton">Logout</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="booking-history">
+            <h2>Booking History</h2>
+            <table id="bookingTable">
+                <thead>
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Booking ID</th>
+                        <th>Booking Date</th>
+                        <th>Receiver Name</th>
+                        <th>Delivered Address</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Booking history rows will be dynamically populated here -->
+                </tbody>
+            </table>
+            <div class="pagination">
+                <button id="prevButton">Previous</button>
+                <button id="nextButton">Next</button>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+<!--     <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        // Sample booking data (replace with actual data retrieval logic)
+        var bookingHistory = [
+            {
+                customerId: "C001",
+                bookingId: "B001",
+                bookingDate: "2024-06-15",
+                receiverName: "John Doe",
+                deliveredAddress: "123 Main St, Anytown",
+                amount: "$50.00",
+                status: "Delivered"
+            },
+            {
+                customerId: "C001",
+                bookingId: "B002",
+                bookingDate: "2024-06-10",
+                receiverName: "Jane Smith",
+                deliveredAddress: "456 Elm St, Another Town",
+                amount: "$65.00",
+                status: "In transit"
+            },
+            // Add more booking history entries as needed
+        ];
+
+        // Retrieve username from session storage or local storage
+        var username = sessionStorage.getItem('username') || localStorage.getItem('username');
+        var welcomeUser = document.getElementById('welcomeUser');
+
+        if (username) {
+            welcomeUser.textContent = 'Welcome ' + username;
+        } else {
+            // Redirect to login page if username is not found
+            window.location.href = 'login.html';
+        }
+
+        // Logout functionality
+        var logoutButton = document.getElementById('logoutButton');
+        logoutButton.addEventListener('click', function() {
+            // Clear session storage and local storage
+            sessionStorage.removeItem('username');
+            localStorage.removeItem('username');
+            // Redirect to login page
+            window.location.href = 'login.html';
+        });
+
+        // Pagination variables
+        var currentPage = 1;
+        var rowsPerPage = 5; // Adjust as needed based on your design
+
+        // Display initial page of booking history
+        displayBookingHistory(currentPage);
+
+        // Function to display booking history based on page number
+        function displayBookingHistory(page) {
+            var bookingTable = document.getElementById('bookingTable').querySelector('tbody');
+            bookingTable.innerHTML = ''; // Clear existing rows
+
+            var startIndex = (page - 1) * rowsPerPage;
+            var endIndex = startIndex + rowsPerPage;
+            var bookingsToShow = bookingHistory.slice(startIndex, endIndex);
+
+            bookingsToShow.forEach(function(booking) {
+                var row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${booking.customerId}</td>
+                    <td>${booking.bookingId}</td>
+                    <td>${booking.bookingDate}</td>
+                    <td>${booking.receiverName}</td>
+                    <td>${booking.deliveredAddress}</td>
+                    <td>${booking.amount}</td>
+                    <td>${booking.status}</td>
+                `;
+                bookingTable.appendChild(row);
+            });
+        }
+
+        // Previous button click event
+        var prevButton = document.getElementById('prevButton');
+        prevButton.addEventListener('click', function() {
+            if (currentPage > 1) {
+                currentPage--;
+                displayBookingHistory(currentPage);
+            }
+        });
+
+        // Next button click event
+        var nextButton = document.getElementById('nextButton');
+        nextButton.addEventListener('click', function() {
+            if (currentPage < Math.ceil(bookingHistory.length / rowsPerPage)) {
+                currentPage++;
+                displayBookingHistory(currentPage);
+            }
+        });
+    });
+
+    </script> -->
+</body>
+</html>

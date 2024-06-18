@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Service</title>
+    <link rel="stylesheet" href="BookingService.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <span class="logo">Parcel Management</span>
+                <a href="dashboard.html" class="back-link">Back to Dashboard</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="booking-container">
+        <section class="section">
+            <h2>Sender Information</h2>
+            <div class="form-group">
+                <label for="senderName">Name:</label>
+                <input type="text" id="senderName" value="John Doe" readonly>
+            </div>
+            <div class="form-group">
+                <label for="senderAddress">Address:</label>
+                <textarea id="senderAddress" readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</textarea>
+            </div>
+            <div class="form-group">
+                <label for="senderContact">Contact details:</label>
+                <input type="text" id="senderContact" value="123-456-7890" readonly>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Receiver Information</h2>
+            <div class="form-group">
+                <label for="receiverName">Name:</label>
+                <input type="text" id="receiverName" required>
+                <span class="error-message" id="receiverNameError"></span>
+            </div>
+            <div class="form-group">
+                <label for="receiverAddress">Address:</label>
+                <textarea id="receiverAddress" required></textarea>
+                <span class="error-message" id="receiverAddressError"></span>
+            </div>
+            <div class="form-group">
+                <label for="receiverPin">Pin Code:</label>
+                <input type="text" id="receiverPin" maxlength="6" required>
+                <span class="error-message" id="receiverPinError"></span>
+            </div>
+            <div class="form-group">
+                <label for="receiverContact">Contact details:</label>
+                <input type="text" id="receiverContact" required>
+                <span class="error-message" id="receiverContactError"></span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Parcel Details</h2>
+            <div class="form-group">
+                <label for="parcelSize">Size and Weight:</label>
+                <input type="text" id="parcelSize" required>
+                <span class="error-message" id="parcelSizeError"></span>
+            </div>
+            <div class="form-group">
+                <label for="contentsDescription">Contents Description:</label>
+                <textarea id="contentsDescription" required></textarea>
+                <span class="error-message" id="contentsDescriptionError"></span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Shipping Options</h2>
+            <div class="form-group">
+                <label for="deliverySpeed">Choose Delivery Speed:</label>
+                <select id="deliverySpeed" required>
+                    <option value="">Select</option>
+                    <option value="standard">Standard</option>
+                    <option value="express">Express</option>
+                </select>
+                <span class="error-message" id="deliverySpeedError"></span>
+            </div>
+            <div class="form-group">
+                <label for="packagingPreference">Select Packaging Preference:</label>
+                <select id="packagingPreference" required>
+                    <option value="">Select</option>
+                    <option value="standard">Standard Packaging</option>
+                    <option value="custom">Custom Packaging</option>
+                    <option value="eco">Eco-friendly Packaging</option>
+                    <option value="fragile">Fragile Item Handling</option>
+                </select>
+                <span class="error-message" id="packagingPreferenceError"></span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Date and Time Selection</h2>
+            <div class="form-group">
+                <label for="pickupTime">Preferred Pickup or Drop-off Time:</label>
+                <input type="datetime-local" id="pickupTime" required>
+                <span class="error-message" id="pickupTimeError"></span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Service Cost and Payment</h2>
+            <div class="form-group">
+                <label for="serviceCost">Service Cost:</label>
+                <input type="text" id="serviceCost" readonly>
+            </div>
+            <div class="form-group">
+                <label for="paymentMethod">Choose Payment Method:</label>
+                <select id="paymentMethod" required>
+                    <option value="">Select</option>
+                    <option value="credit">Credit Card</option>
+                    <option value="debit">Debit Card</option>
+                    <option value="paypal">PayPal</option>
+                </select>
+                <span class="error-message" id="paymentMethodError"></span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Additional Services</h2>
+            <div class="form-group">
+                <label for="insurance">Insurance Options:</label>
+                <input type="checkbox" id="insurance">
+            </div>
+            <div class="form-group">
+                <label for="tracking">Tracking Services:</label>
+                <input type="checkbox" id="tracking">
+            </div>
+        </section>
+
+        <button id="submitBooking">Submit Booking</button>
+    </main>
+
+    <script src="script.js">
+    
+    </script>
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle form submission
+        document.getElementById('submitBooking').addEventListener('click', function(event) {
+            event.preventDefault();
+            //this.submit();
+
+            // Reset all previous error messages
+            clearErrorMessages();
+
+            // Validate receiver name
+            var receiverName = document.getElementById('receiverName').value.trim();
+            if (receiverName === '') {
+                displayErrorMessage('receiverNameError', 'Receiver Name is required');
+                return;
+            }
+
+            // Validate receiver address
+            var receiverAddress = document.getElementById('receiverAddress').value.trim();
+            if (receiverAddress === '') {
+                displayErrorMessage('receiverAddressError', 'Receiver Address is required');
+                return;
+            }
+
+            // Validate receiver pin code
+            var receiverPin = document.getElementById('receiverPin').value.trim();
+            if (receiverPin === '') {
+                displayErrorMessage('receiverPinError', 'Receiver Pin Code is required');
+                return;
+            } else if (!/^\d{6}$/.test(receiverPin)) {
+                displayErrorMessage('receiverPinError', 'Enter a valid 6-digit Pin Code');
+                return;
+            }
+
+            // Validate receiver contact details
+            var receiverContact = document.getElementById('receiverContact').value.trim();
+            if (receiverContact === '') {
+                displayErrorMessage('receiverContactError', 'Receiver Contact details are required');
+                return;
+            }
+
+            // Validate parcel size and weight
+            var parcelSize = document.getElementById('parcelSize').value.trim();
+            if (parcelSize === '') {
+                displayErrorMessage('parcelSizeError', 'Parcel Size and Weight is required');
+                return;
+            }
+
+            // Validate contents description
+            var contentsDescription = document.getElementById('contentsDescription').value.trim();
+            if (contentsDescription === '') {
+                displayErrorMessage('contentsDescriptionError', 'Contents Description is required');
+                return;
+            }
+
+            // Validate delivery speed
+            var deliverySpeed = document.getElementById('deliverySpeed').value.trim();
+            if (deliverySpeed === '') {
+                displayErrorMessage('deliverySpeedError', 'Delivery Speed is required');
+                return;
+            }
+
+            // Validate packaging preference
+            var packagingPreference = document.getElementById('packagingPreference').value.trim();
+            if (packagingPreference === '') {
+                displayErrorMessage('packagingPreferenceError', 'Packaging Preference is required');
+                return;
+            }
+
+            // Validate pickup time
+            var pickupTime = document.getElementById('pickupTime').value.trim();
+            if (pickupTime === '') {
+                displayErrorMessage('pickupTimeError', 'Pickup Time is required');
+                return;
+            }
+
+            // Simulate service cost calculation (replace with actual logic)
+            var serviceCost = calculateServiceCost(parcelSize, deliverySpeed);
+
+            // Display service cost
+            document.getElementById('serviceCost').value = '$' + serviceCost.toFixed(2);
+
+            // If all validations pass, submit the form (simulate submission)
+            alert('Form submitted successfully!'); // Replace with actual submission logic
+            // Optionally, you can redirect to another page after submission
+            // window.location.href = 'invoice.html';
+        });
+
+        // Function to display error messages
+        function displayErrorMessage(id, message) {
+            var errorElement = document.getElementById(id);
+            if (errorElement) {
+                errorElement.textContent = message;
+            }
+        }
+
+        // Function to clear all error messages
+        function clearErrorMessages() {
+            var errorMessages = document.querySelectorAll('.error-message');
+            errorMessages.forEach(function(element) {
+                element.textContent = '';
+            });
+        }
+
+        // Function to calculate service cost (dummy logic)
+        function calculateServiceCost(size, speed) {
+            // Replace with actual calculation logic based on size and speed
+            var baseCost = 20; // Example base cost
+            var sizeFactor = parseInt(size); // Example: Convert size to integer for calculation
+            var speedFactor = speed === 'standard' ? 1.0 : 1.5; // Example: Adjust cost based on speed
+            var cost = baseCost * sizeFactor * speedFactor;
+            return cost;
+        }
+    });
+    
+
+    </script>
+</body>
+</html>

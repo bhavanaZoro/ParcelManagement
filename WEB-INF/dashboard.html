@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+    <link rel="stylesheet" href=dashboard.css>
+</head>
+<body>
+    <div class="menu-container">
+        <h2>Customer Dashboard</h2>
+        <ul class="menu-list">
+            <li><a href="dashboard.html" id="home">Home</a></li>
+            <li><a href="BookingService.html" id="bookingService">Booking Service</a></li>
+            <li><a href="tracking.html" id="tracking">Tracking</a></li>
+            <li><a href="previousBooking.html" id="previousBooking">Previous Booking</a></li>
+            <li><a href="support.html" id="contactSupport">Contact Support</a></li>
+            <li><a href="login.html" id="logout">Logout</a></li>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('bookingService').addEventListener('click', function() {
+            // Navigate to Booking Service
+            window.location.href = 'booking.html';
+        });
+
+        document.getElementById('tracking').addEventListener('click', function() {
+            // Navigate to Tracking
+            window.location.href = 'tracking.html';
+        });
+
+        document.getElementById('previousBooking').addEventListener('click', function() {
+            // Navigate to Previous Booking
+            window.location.href = 'previousBooking.html';
+        });
+
+        document.getElementById('contactSupport').addEventListener('click', function() {
+            // Navigate to Contact Support
+            window.location.href = 'support.html';
+        });
+
+        document.getElementById('logout').addEventListener('click', function() {
+            // Clear user session and redirect to login page
+            // In a real application, you would also clear the session on the server
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

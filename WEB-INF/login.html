@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="file:///D:/13.11.2023%20bbbb/Downloads/Recent/TCS/PracticeDynamic/src/main/webapp/WEB-INF/login.css">
+    <title>Customer Login</title>
+    <style>
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Customer Login</h2>
+    <form id="loginForm">
+        <label for="userID">User ID:</label><br>
+        <input type="text" id="userID" name="userID" minlength="5" maxlength="20" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" maxlength="30" required><br><br>
+
+        <input type="submit" value="Login">
+        <p class="error" id="errorMessage"></p>
+    </form>
+
+    <script>
+        // Predefined array of customers (for demonstration purposes)
+        const customers = [
+            { userID: 'user123', password: 'Password@123' },
+            { userID: 'customer456', password: 'Cust@456' }
+        ];
+
+        // Event listener for form submission
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const userID = document.getElementById('userID').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Clear previous error message
+            errorMessage.textContent = '';
+
+            // Validate userID and password format
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{1,30}$/;
+            if (!passwordPattern.test(password)) {
+                errorMessage.textContent = 'Password must contain at least one upper case letter, one lower case letter, and one special character.';
+                return;
+            }
+
+            // Check if user exists and password matches
+            const customer = customers.find(customer => customer.userID === userID && customer.password === password);
+            if (!customer) {
+                errorMessage.textContent = 'Invalid User ID or Password.';
+                return;
+            }
+
+            // Successful login
+            alert('Login successful!');
+            // Redirect to dashboard/home page (replace with actual URL)
+            window.location.href = 'dashboard.html';
+        });
+    </script>
+</body>
+</html>

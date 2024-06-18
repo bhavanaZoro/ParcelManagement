@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Page</title>
+    <link rel="stylesheet" href="PayBill.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <span class="logo">Parcel Management</span>
+                <div class="user-info">
+                    <span>Welcome, <span id="username"></span></span>
+                    <a href="#" id="logout">Logout</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="payment-container">
+        <div class="payment-details">
+            <h2>Payment Details</h2>
+            <div class="bill-details">
+                <p><strong>Bill Amount:</strong> $<span id="billAmount">100</span></p>
+                <p><strong>Mode of Payment:</strong> 
+                    <select id="paymentMode">
+                        <option value="debit">Debit Card</option>
+                        <option value="credit">Credit Card</option>
+                    </select>
+                </p>
+            </div>
+            <button id="payNow">Pay Now</button>
+            <a href="bookingservice.html" class="back-link">Back to Booking Service</a>
+        </div>
+
+        <div class="card-details hidden" id="cardDetails">
+            <h2>Enter Card Details</h2>
+            <form id="paymentForm">
+                <p><strong>Credit Card:</strong> (Read only)</p>
+                <p><strong>Card No:</strong> <input type="text" id="cardNumber" maxlength="16" required></p>
+                <p><strong>Card Holder Name:</strong> <input type="text" id="cardHolder" required></p>
+                <p><strong>Expiry Date:</strong> <input type="text" id="expiryDate" placeholder="MM/YY" required></p>
+                <p><strong>CVV:</strong> <input type="text" id="cvv" maxlength="3" required></p>
+                <button type="submit">Make Payment</button>
+            </form>
+        </div>
+
+        <div class="payment-success hidden" id="paymentSuccess">
+            <h2>Payment Successful!</h2>
+            <p>Booking ID: <span id="bookingID"></span></p>
+            <a href="invoice.html">View Invoice</a>
+        </div>
+    </main>
+
+    <script src="script.js">
+ // Simulated current user (replace with actual user data retrieval)
+    const currentUser = {
+        username: 'John Doe',
+        bookingID: '1234567890' // Simulated booking ID
+    };
+
+    // DOM elements
+    const usernameElement = document.getElementById('username');
+    const billAmountElement = document.getElementById('billAmount');
+    const paymentModeElement = document.getElementById('paymentMode');
+    const payNowButton = document.getElementById('payNow');
+    const logoutButton = document.getElementById('logout');
+    const cardDetailsSection = document.getElementById('cardDetails');
+    const paymentForm = document.getElementById('paymentForm');
+    const paymentSuccessSection = document.getElementById('paymentSuccess');
+    const bookingIDElement = document.getElementById('bookingID');
+    const cardNumberInput = document.getElementById('cardNumber');
+    const cardHolderInput = document.getElementById('cardHolder');
+    const expiryDateInput = document.getElementById('expiryDate');
+    const cvvInput = document.getElementById('cvv');
+
+    // Display current user's username
+    usernameElement.textContent = currentUser.username;
+
+    // Display bill amount (simulate fetching from backend)
+    const billAmount = 100; // Replace with actual amount calculation
+    billAmountElement.textContent = billAmount;
+
+    // Logout functionality
+    logoutButton.addEventListener('click', () => {
+        // Simulate clearing session or cookies on logout
+        alert('Logged out successfully!');
+        // Redirect to login page
+        window.location.href = 'login.html';
+    });
+
+    // Pay Now button click event
+    payNowButton.addEventListener('click', () => {
+        cardDetailsSection.classList.remove('hidden');
+    });
+
+    // Payment form submission
+    paymentForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        
+        // Simulate payment processing
+        setTimeout(() => {
+            // Simulate successful payment
+            paymentForm.reset(); // Reset form fields
+            cardDetailsSection.classList.add('hidden');
+            paymentSuccessSection.classList.remove('hidden');
+            bookingIDElement.textContent = currentUser.bookingID;
+        }, 2000); // Simulate delay for 2 seconds (replace with actual API call)
+    });
+
+    </script>
+</body>
+</html>

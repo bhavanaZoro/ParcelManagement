@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Registration Form</title>
+    <link rel="stylesheet" type="text/css" href="register.css">
+</head>
+<body>
+    <h2>Customer Registration Form</h2>
+    <form id="registrationForm">
+        <label for="customerName">Customer Name:</label><br>
+        <input type="text" id="customerName" name="customerName" maxlength="50" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="mobile">Mobile Number:</label><br>
+        <select id="countryCode" name="countryCode" required>
+            <option value="+1">+1</option>
+            <option value="+44">+44</option>
+            <option value="+91">+91</option>
+            <!-- Add more country codes as needed -->
+        </select>
+        <input type="text" id="mobile" name="mobile" pattern="\d{10}" required>
+        <small>Enter a 10 digit mobile number</small><br><br>
+
+        <label for="address">Address:</label><br>
+        <textarea id="address" name="address" rows="4" cols="50" required></textarea><br><br>
+
+        <label for="userID">User ID:</label><br>
+        <input type="text" id="userID" name="userID" minlength="5" maxlength="20" required><br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" maxlength="30" required><br><br>
+
+        <label for="confirmPassword">Confirm Password:</label><br>
+        <input type="password" id="confirmPassword" name="confirmPassword" maxlength="30" required><br><br>
+
+        <label for="preferences">Preferences:</label><br>
+        <textarea id="preferences" name="preferences" rows="4" cols="50"></textarea><br><br>
+
+        <input type="submit" value="Register">
+    </form>
+
+    <script>
+        // Array to store customer registrations
+        const customers = [];
+
+        // Event listener for form submission
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const customerName = document.getElementById('customerName').value;
+            const email = document.getElementById('email').value;
+            const countryCode = document.getElementById('countryCode').value;
+            const mobile = document.getElementById('mobile').value;
+            const address = document.getElementById('address').value;
+            const userID = document.getElementById('userID').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const preferences = document.getElementById('preferences').value;
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match.');
+                return;
+            }
+
+            // Create a customer object
+            const customer = {
+                customerName: customerName,
+                email: email,
+                mobile: countryCode + mobile,
+                address: address,
+                userID: userID,
+                password: password,
+                preferences: preferences
+            };
+
+            // Add customer object to the array
+            customers.push(customer);
+
+            // Display success message
+            alert('Registration successful!');
+            console.log(customers); // Display the array of customers in the console
+
+            // Reset the form
+            document.getElementById('registrationForm').reset();
+        });
+    </script>
+</body>
+</html>

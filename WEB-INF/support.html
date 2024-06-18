@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support</title>
+    <link rel="stylesheet" href="support.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="container">
+                <span class="logo">Parcel Management</span>
+                <div class="user-info">
+                    <span id="welcomeUser"></span>
+                    <button id="logoutButton">Logout</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="support-details">
+            <h2>Customer Support</h2>
+            <div class="info">
+                <p><strong>Contact Number:</strong> +1 123 456 7890</p>
+                <p><strong>Email:</strong> support@parcelmanagement.com</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        // Retrieve username from session storage or local storage
+        var username = sessionStorage.getItem('username') || localStorage.getItem('username');
+        var welcomeUser = document.getElementById('welcomeUser');
+
+        if (username) {
+            welcomeUser.textContent = 'Welcome ' + username;
+        } else {
+            // Redirect to login page if username is not found
+            window.location.href = 'login.html';
+        }
+
+        // Logout functionality
+        var logoutButton = document.getElementById('logoutButton');
+        logoutButton.addEventListener('click', function() {
+            // Clear session storage and local storage
+            sessionStorage.removeItem('username');
+            localStorage.removeItem('username');
+            // Redirect to login page
+            window.location.href = 'login.html';
+        });
+    });
+
+    </script>
+</body>
+</html>
